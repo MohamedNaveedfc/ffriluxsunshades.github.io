@@ -1,0 +1,288 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport"
+      content="width=device-width, inital-scal=1.0">
+
+      <title>Frilux SunShades - Signin</title>
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="icon/css/font-awesome.min.css">
+      <link rel="stylesheet" href="my_style.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+      <script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
+      <script type="text/javascript" src="js/popper.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+    </head>
+    <body>
+    <div class="nav-fluid">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg sticky-top">
+          <a class="navbar-brand" href="#"> <img src="images/Frilux_logo.png" alt=""> </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" aria-hidden="true" style="color:#ffff; font-size:25px;"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Dropdown -->
+           <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle  active" href="#" id="navbardrop" data-toggle="dropdown">
+                Collection
+                <span class="sr-only">(current)</span></a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="Mens Collection.html">Men's Collection</a>
+                <a class="dropdown-item" href="Women Collection.html">Women's Collection</a>
+                <a class="dropdown-item " href="90s Collection.html">90s Collection</a>
+                <a class="dropdown-item" href="kids Collection.html">Kid's Collection</a>
+                <a class="dropdown-item" href="Premier Collection.html">Premier Collection</a>
+             </div>
+           </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="Shades.html">Shades <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="Gallery.html">Gallery </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="about-us.html">About Us</a>
+              </li>
+
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="contact-us.html">Contact Us</a>
+              </li>
+
+              <li class="nav-item active">
+                <a class="nav-link disabled" href="Signin.html">Signin</a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+      </div><!--end of the container-->
+    </div>
+
+  <div class="container">
+    <div class="form1 text-center" >
+      <form id="form" class="form2">
+        <div class="form-control">
+          <label for="username">Email</label>
+          <input type="email" placeholder="Enter Email" id="email" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Password</label>
+          <input type="password" placeholder="Password" id="password"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+          <br>
+          <button type="submit" name="button">Signin</button>
+          <br>
+         <a href="signup.html">Create a New Account</a>
+      </form>
+      </div>
+  </div>
+
+  <script type="text/javascript">
+  const form = document.getElementById('form');
+  const username = document.getElementById('username');
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  const password2 = document.getElementById('password2');
+
+  form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  checkInputs();
+  });
+
+  function checkInputs() {
+  // trim to remove the whitespaces
+  const usernameValue = username.value.trim();
+  const emailValue = email.value.trim();
+  const passwordValue = password.value.trim();
+  const password2Value = password2.value.trim();
+
+  if(usernameValue === '') {
+  setErrorFor(username, 'Username cannot be blank');
+  } else {
+  setSuccessFor(username);
+  }
+
+  if(emailValue === '') {
+  setErrorFor(email, 'Email cannot be blank');
+  } else if (!isEmail(emailValue)) {
+  setErrorFor(email, 'Not a valid email');
+  } else {
+  setSuccessFor(email);
+  }
+
+  if(passwordValue === '') {
+  setErrorFor(password, 'Password cannot be blank');
+  } else {
+  setSuccessFor(password);
+  }
+
+  if(password2Value === '') {
+  setErrorFor(password2, 'Password2 cannot be blank');
+  } else if(passwordValue !== password2Value) {
+  setErrorFor(password2, 'Passwords does not match');
+  } else{
+  setSuccessFor(password2);
+  }
+  }
+
+  function setErrorFor(input, message) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector('small');
+  formControl.className = 'form-control error';
+  small.innerText = message;
+  }
+
+  function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control success';
+  }
+
+  function isEmail(email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  }
+
+  </script>
+
+
+
+<!-- Footer Links -->
+<footer>
+<div class="container text-center text-md-left">
+  <!-- Footer links -->
+  <div class="row text-center text-md-left mt-3 pb-3">
+
+    <!-- Grid column -->
+    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
+    <h6 class="text-uppercase font-weight-bold">Frilux SunShades</h6>
+    <p><i>Spend less. Do more </i></p>
+    </div>
+    <!-- Grid column -->
+
+    <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+        <h6 class="text-uppercase font-weight-bold">Links</h6>
+        <p>
+        <a href="home.html">Home</a>
+        </p>
+
+        <p>
+        <a href="Mens Collection.html">Collection</a>
+        </p>
+
+        <p>
+          <a href="Shades.html">Shades</a>
+        </p>
+
+        <p>
+          <a href="Gallery.html">Gallery</a>
+        </p>
+
+        <p>
+        <a href="about-us.html">About Us</a>
+        </p>
+
+
+        <p>
+        <a href="contact-us.html">Contact Us</a>
+        </p>
+        </div>
+
+        <hr class="w-100 clearfix d-md-none">
+
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+        <h6 class="text-uppercase font-weight-bold">Brands</h6>
+        <p>
+          <a href="Shades.html">Oakley</a>
+        </p>
+
+        <p>
+        <a href="Shades.html">Ray-Ban</a>
+        </p>
+
+        <p>
+        <a href="Shades.html">Burberry</a>
+        </p>
+
+        <p>
+        <a href="Shades.html">Armani Exchange</a>
+        </p>
+
+
+        </div>
+
+            <!-- Grid column -->
+
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+          <p>
+            <i class="fas fa-home"></i> </p>
+          <p>
+            <i class="fas fa-envelope"></i> info@Friluxsunshades.com</p>
+            <p>
+              <i class="fas fa-phone "></i> +   76 243 423 40  </p>
+            <p>
+                <i class="fas fa-print"></i> +  77 745 951 20   </p>
+        </div>
+
+        <!-- Grid column -->
+
+      </div>
+      <!-- Footer links -->
+
+      <hr>
+
+      <!-- Grid row -->
+
+          <!--Copyright-->
+          <p class="text-center text-md-center">© 2021Copyright
+            <a href="https://Friluxsunshadescom/">
+              <strong> Friluxsunshades.com</strong>
+            </a>
+          </p>
+        <!-- Grid column -->
+
+  </div>  <!-- Grid column -->
+
+  </footer>
+  <!-- Footer -->
+
+
+
+
+
+
+
+
+</body>
+</html>
